@@ -28,7 +28,7 @@ const Login = () => {
                     </div>
                     <div className='text-sm '>
                         <span>New Customer?</span>
-                        <span className="underline"> <Link>Create Account</Link></span>
+                        <span className="underline"> <Link to='/register'>Create Account</Link></span>
                     </div>
                 </div>
             </div>
