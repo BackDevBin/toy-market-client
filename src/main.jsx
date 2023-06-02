@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Login from './component/Pages/Login/Login.jsx';
+import Home from './component/Pages/Home/Home.jsx';
 
 const router = createBrowserRouter([
   {
@@ -11,10 +13,17 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <div></div>,
+        element: <Home></Home>,
       },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      }
+      
     ],
   },
+  
+  
 ]);
 
 
@@ -22,6 +31,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
  
     <React.StrictMode>
     <RouterProvider router={router}></RouterProvider> 
-  </React.StrictMode>,
+   </React.StrictMode>,
 
 )
