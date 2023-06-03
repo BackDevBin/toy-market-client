@@ -22,7 +22,7 @@ const Gallery = () => {
              
             <div className='grid grid-cols-4 rounded-lg md:gap-1 bg-slate-600'>
                 {
-                    images.map(image => <img key={image._id} className='w-full h-full rounded-lg transition ease-in-out hover:-translate-y-1 hover:scale-125 duration-150' src={image.url} alt="" />)
+                    images.map(image => <img key={image._id} className='w-full h-full rounded-lg transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-150' src={image.url} alt="" />)
                 }
             </div>
 
