@@ -6,7 +6,7 @@ const ShopCatacories = () => {
 
     const [toggle, setToggle] = useState("All Toys");
     const [toys, setToys] = useState([]);
-    const [cat, setCat] = useState([]);
+    let [cat, setCat] = useState([]);
 
     useEffect(() => {
         fetch('http://localhost:5000/toys')
@@ -14,17 +14,20 @@ const ShopCatacories = () => {
             .then(data => setToys(data))
     }, [])
 
-    // const newToy = toys;
-    // console.log(newToy);
+
+    if(cat.length === 0 ){
+        cat = toys;
+    }
 
     
 
     const toggleTab = (index) => {
         setToggle(index);
+        console.log(index);
         if (index == "All Toys") {
             setCat(toys);
         } else {
-            const catToy = toys.filter(toy => toy.category === toggle);
+            const catToy = toys.filter(toy => toy.category === index);
             setCat(catToy);
         }
     }
@@ -39,7 +42,7 @@ const ShopCatacories = () => {
             </div>
 
             <div className="tabs mx-auto w-fit">
-                <Link onClick={() => toggleTab("All Toys")} className={toggle === "All Toys" ? "tab tab-lg tab-lifted tab-active" : "tab tab-lg tab-lifted"}>All Toys</Link>
+                <Link onClick={() => toggleTab("All Toys")} className={toggle === "All Toys" ? "tab tab-lg tab-lifted tab-active" : "tab tab-lg tab-lifted"}>All Category</Link>
                 <Link onClick={() => toggleTab("Teddy Bear")} className={toggle === "Teddy Bear" ? "tab tab-lg tab-lifted tab-active" : "tab tab-lg tab-lifted"}>Teddy Bear</Link>
                 <Link onClick={() => toggleTab("Dinosaur")} className={toggle === "Dinosaur" ? "tab tab-lg tab-lifted tab-active" : "tab tab-lg tab-lifted"}>Dinosaur</Link>
                 <Link onClick={() => toggleTab("Horse")} className={toggle === "Horse" ? "tab tab-lg tab-lifted tab-active" : "tab tab-lg tab-lifted"}>Horse</Link>
