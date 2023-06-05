@@ -1,17 +1,65 @@
 import React, { useState } from 'react';
+import { useContext } from 'react';
 import { FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const Login = () => {
     const [show, setShow] = useState(false);
+    const [error , setError] = useState('');
+
+    const {GoogleLogin,createLogin} = useContext(AuthContext);
+
+
+    const navigate = useNavigate();
+
+    let location = useLocation();
+
+    const from = location.state?.from?.pathname || '/';
+
+    const handleLogin =(event) =>{
+        event.preventDefault();
+
+        const form = event.target;
+        const email = form.email.value;
+        const pass = form.password.value;
+
+        console.log(email,pass);
+
+        createLogin(email, pass)
+        .then(result =>{
+            const logUser = result.user;
+            form.reset();
+            navigate(from);
+        })
+        .catch(error =>{
+            console.log(error);
+            setError(error.message);
+        })
+        
+    }
+
+    const loginGoogle = () =>{
+        console.log('clicked');
+        GoogleLogin()
+        .then(result =>{
+            const logUser = result.user;
+            navigate(from);
+        })
+        .catch(error =>{
+            //console.log("error",error);
+            
+        })
+    }
+    
 
     return (
         <div className='w-full'>
 
             <div className='mx-auto my-8 py-10 px-9 w-80 text-center space-y-5 border-2 rounded-md '>
                 <h3 className='text-xl'>Sign In</h3>
-                <div className='space-y-5'>
-                    <input type="email" placeholder="Email" name='name' className="input input-bordered input-secondary block w-full max-w-xs " />
+                <form onSubmit={handleLogin} className='space-y-5'>
+                    <input type="email" placeholder="Email" name='email' className="input input-bordered input-secondary block w-full max-w-xs " />
                     <div>
                         <input type={show ? "text" : "password"} placeholder="Password" name='password' className="input input-bordered input-secondary block w-full max-w-xs" />
                         <p onClick={() => setShow(!show)} className='text-start text-sm text-stone-500'><small>
@@ -22,15 +70,15 @@ const Login = () => {
 
                     </div>
                     <div className='flex mx-auto space-x-3 w-60'>
-                        <button className="btn btn-outline btn-secondary normal-case">Login</button>
+                        <input className="btn btn-outline btn-secondary normal-case" type="submit" value="Login" />
                         <h3 className='p-3'>Or</h3>
-                        <button className="btn btn-outline btn-secondary normal-case"><FaGoogle></FaGoogle> Google</button>
+                        <button onClick={loginGoogle} className="btn btn-outline btn-secondary normal-case"><FaGoogle></FaGoogle> Google</button>
                     </div>
                     <div className='text-sm '>
                         <span>New Customer?</span>
                         <span className="underline"> <Link to='/register'>Create Account</Link></span>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     );

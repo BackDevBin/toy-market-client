@@ -28,7 +28,7 @@ const Navber = () => { //All Toys, My Toys, Add A Toy, Blogs,
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+            <Link to="/login"><button className="btn btn-outline btn-secondary normal-case">Login</button></Link>
             </div>
         </div>
     );
