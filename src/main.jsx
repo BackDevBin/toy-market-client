@@ -9,6 +9,8 @@ import Register from './component/Pages/Register/Register.jsx';
 import ErrorPage from './component/Pages/ErrorPage/ErrorPage.jsx';
 import Blog from './component/Pages/Blog/Blog.jsx';
 import AllToys from './component/Pages/AllToys/AllToys.jsx';
+import ToyDetails from './component/Pages/ToyDetails/ToyDetails.jsx';
+import AddToy from './component/Pages/AddToy/AddToy.jsx';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +36,16 @@ const router = createBrowserRouter([
       {
         path: "/toys",
         element: <AllToys></AllToys>,
+      },
+      {
+        path: "/details/:id",
+        element: <ToyDetails></ToyDetails>,
+        loader: ({params}) => fetch(`http://localhost:5000/toys/${params.id}`)
+
+      },
+      {
+        path: "/add",
+        element: <AddToy></AddToy>,
       }
       
     ],

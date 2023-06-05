@@ -58,14 +58,14 @@ const ShopCatacories = () => {
                         <h3 className='text-xl font-semibold'>{cate.toy_name}</h3>
                         <p className='text-base font-semibold'>$ <span className='text-xl font-semibold'>{cate.price}</span></p>
                         <div className='flex align-middle'>
-                            <FaStar className='text-yellow-400 text-base'></FaStar>
-                            <FaStar className='text-yellow-400 text-base'></FaStar>
-                            <FaStar className='text-yellow-400 text-base'></FaStar>
-                            <FaStar className='text-yellow-400 text-base'></FaStar>
-                            <FaStar className=' text-base'></FaStar>
+                            <FaStar className='text-yellow-400 text-base mt-1'></FaStar>
+                            <FaStar className='text-yellow-400 text-base mt-1'></FaStar>
+                            <FaStar className='text-yellow-400 text-base mt-1'></FaStar>
+                            <FaStar className='text-yellow-400 text-base mt-1'></FaStar>
+                            <FaStar className=' text-base mt-1'></FaStar>
                             <p className='mx-2'>{cate.rating}</p>
                         </div>
-                        <button className="btn btn-outline btn-secondary normal-case ">Details</button>
+                        <Link to={`/details/${cate._id}`}><button className="btn btn-outline btn-secondary normal-case mt-2">Details</button></Link>
                     </div>)
                 }
 

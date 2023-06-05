@@ -23,7 +23,7 @@ const Navber = () => { //All Toys, My Toys, Add A Toy, Blogs,
                 <ul className="menu menu-horizontal px-1">
                     <li><Link to="/toys"> All Toys</Link> </li>
                     <li><Link> My Toys</Link> </li>
-                    <li><Link> Add A Toy</Link> </li>
+                    <li><Link to="/add"> Add A Toy</Link> </li>
                     <li><Link to="/blog"> Blogs</Link> </li>
                 </ul>
             </div>

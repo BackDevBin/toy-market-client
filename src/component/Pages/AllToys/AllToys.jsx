@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import userlogo from '../../../assets/user.png'
+import { Link } from 'react-router-dom';
 
 const AllToys = () => {
 
@@ -58,7 +59,7 @@ const AllToys = () => {
                                 <td>{toy.category}</td>
                                 <td>USD {toy.price}</td>
                                 <th>
-                                    <button className="btn btn-ghost btn-xs">details</button>
+                                    <Link to={`/details/${toy._id}`}><button className="btn btn-ghost btn-xs">details</button></Link>
                                 </th>
                             </tr>)
                         }
