@@ -2,36 +2,74 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const AddToy = () => {
+
+    const HandleAddToy = event => {
+        event.preventDefault();
+        const form = event.target;
+        const seller_name = form.name.value;
+        const seller_email = form.email.value;
+        const toy_name = form.toy.value;
+        const available_quantity = form.quantity.value;
+        const price = form.price.value;
+        const rating = form.rating.value;
+        const category = form.category.value;
+        const detail_description = form.details.value;
+        const picture = form.image.value;
+        const toyDetails = { seller_name, seller_email, toy_name, category, price, available_quantity, picture, detail_description, rating };
+
+        console.log(toyDetails)
+        fetch(`http://localhost:5000/toys`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(toyDetails)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+
+            })
+    }
+
+
+
     return (
         <div className='w-full'>
 
             <div className='mx-auto my-8 py-10 px-9 w-1/2 text-center space-y-5 border-2 rounded-md '>
                 <h3 className='text-xl'>Additional Information</h3>
-                <div className='space-y-5'>
+                <form onSubmit={HandleAddToy} className='space-y-5'>
                     <div className='flex gap-5'>
-                        <input type="text" placeholder="Toy Name" name='toy_name' className="input input-bordered input-secondary block w-full  " />
-                        <input type="text" placeholder="Category" name='category' className="input input-bordered input-secondary block w-full  " />
+                        <input type="text" placeholder="Toy Name" name='toy' className="input input-bordered input-secondary block w-full  " required />
+                        <select className="select select-secondary w-full max-w-xs" name='category' required>
+                            <option disabled selected>Category</option>
+                            <option>Teddy Bear</option>
+                            <option>Horse</option>
+                            <option>Dinosaur</option>
+                            <option>Unicorn</option>
+                        </select>
                     </div>
                     <div className='flex gap-5'>
-                        <input type="text" placeholder="Price" name='price' className="input input-bordered input-secondary block w-full  " />
-                        <input type="number" placeholder="Rating" name='rating' className="input input-bordered input-secondary block w-full  " />
-                        <input type="number" placeholder="Quantity" name='quantity' className="input input-bordered input-secondary block w-full  " />
+                        <input type="text" placeholder="Price" name='price' className="input input-bordered input-secondary block w-full  " required />
+                        <input type="text" placeholder="Rating" name='rating' className="input input-bordered input-secondary block w-full  " required />
+                        <input type="number" placeholder="Quantity" name='quantity' className="input input-bordered input-secondary block w-full  " required />
                     </div>
                     <div className='flex gap-5'>
-                        <input type="text" placeholder="Seller Name" name='Seller_name' className="input input-bordered input-secondary block w-full  " />
-                        <input type="email" placeholder="Seller Email" name='email' className="input input-bordered input-secondary block w-full  " />
+                        <input type="text" placeholder="Seller Name" name='name' className="input input-bordered input-secondary block w-full  " required />
+                        <input type="email" placeholder="Seller Email" name='email' className="input input-bordered input-secondary block w-full  " required />
                     </div>
-                    <input type="url" placeholder="Photo Url" name='image' className="input input-bordered input-secondary block w-full  " />
-                    <textarea className="textarea textarea-secondary block w-full" placeholder="Write description" name='description' ></textarea>
+                    <input type="url" placeholder="Photo Url" name='image' className="input input-bordered input-secondary block w-full  " required />
+                    <textarea className="textarea textarea-secondary block w-full" placeholder="Write description" name='details' required ></textarea>
 
                     <div className='flex mx-auto space-x-3 md:w-72'>
-                        <button className="btn btn-outline btn-secondary w-full normal-case">Add Toy</button>
+                        <input className="btn btn-outline btn-secondary w-full normal-case" type="submit" value="Add Toy" />
                     </div>
                     <div className='text-sm '>
                         <span>Check the toy list? </span>
                         <span className='text-green-600 underline'> <Link to='/'> Go</Link></span>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     );
