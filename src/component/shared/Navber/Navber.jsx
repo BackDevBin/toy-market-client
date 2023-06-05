@@ -1,8 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
+import { useContext } from 'react';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 
-const Navber = () => { //All Toys, My Toys, Add A Toy, Blogs,
+const Navber = () => {
+
+    const { logOut, user } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { console.log("out") })
+            .catch((error) => console.log(error))
+    }
+
+    console.log(user)
+
     return (
         <div className="navbar bg-base-200">
             <div className="navbar-start">
@@ -28,7 +41,15 @@ const Navber = () => { //All Toys, My Toys, Add A Toy, Blogs,
                 </ul>
             </div>
             <div className="navbar-end">
-            <Link to="/login"><button className="btn btn-outline btn-secondary normal-case">Login</button></Link>
+                {
+                    user ? <>
+                        <div className="tooltip tooltip-bottom tooltip-secondary" data-tip={user?.displayName}>
+                        <img className='rounded-full w-24' src={user?.photoURL} alt="" />
+                        </div>
+                        <button onClick={handleLogOut} className="btn btn-outline btn-secondary normal-case">Logout</button>
+                        
+                    </> : <Link to="/login"><button className="btn btn-outline btn-secondary normal-case">Login</button></Link>
+                }
             </div>
         </div>
     );

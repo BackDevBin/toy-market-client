@@ -10,7 +10,7 @@ const Register = () => {
     const [success , setSuccess] = useState('');
 
 
-    const {createUser} = useContext(AuthContext);
+    const {createUser , logOut} = useContext(AuthContext);
 
    
     const handleSignUpForm = (event) => {
@@ -28,16 +28,13 @@ const Register = () => {
         setError('');
         setSuccess('');
 
-        // if(pass < 6 ){
-        //     setError('Password Must Be Six Characters');
-        // }
-
 
         createUser(email,pass)
         .then(result =>{
             const logUser = result.user;
             setSuccess('Registration Successful !!!');
             form.reset();
+            logOut();
             // console.log(logUser);
         })
         .catch(error =>{

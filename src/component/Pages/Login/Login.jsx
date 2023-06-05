@@ -72,7 +72,7 @@ const Login = () => {
                     <div className='flex mx-auto space-x-3 w-60'>
                         <input className="btn btn-outline btn-secondary normal-case" type="submit" value="Login" />
                         <h3 className='p-3'>Or</h3>
-                        <button onClick={loginGoogle} className="btn btn-outline btn-secondary normal-case"><FaGoogle></FaGoogle> Google</button>
+                        <button onClick={loginGoogle} type='button' className="btn btn-outline btn-secondary normal-case"><FaGoogle></FaGoogle> Google</button>
                     </div>
                     <div className='text-sm '>
                         <span>New Customer?</span>
