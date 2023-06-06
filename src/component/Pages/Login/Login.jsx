@@ -40,7 +40,7 @@ const Login = () => {
     }
 
     const loginGoogle = () =>{
-        console.log('clicked');
+        
         GoogleLogin()
         .then(result =>{
             const logUser = result.user;

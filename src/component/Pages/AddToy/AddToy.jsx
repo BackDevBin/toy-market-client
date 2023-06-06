@@ -1,7 +1,12 @@
 import React from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const AddToy = () => {
+
+    const user = useContext(AuthContext);
+    const email = user.user.email;
 
     const HandleAddToy = event => {
         event.preventDefault();
@@ -17,7 +22,7 @@ const AddToy = () => {
         const picture = form.image.value;
         const toyDetails = { seller_name, seller_email, toy_name, category, price, available_quantity, picture, detail_description, rating };
 
-        console.log(toyDetails)
+        //console.log(toyDetails)
         fetch(`http://localhost:5000/toys`, {
             method: 'POST',
             headers: {
@@ -30,6 +35,8 @@ const AddToy = () => {
                 console.log(data);
 
             })
+
+            form.reset();
     }
 
 
@@ -42,7 +49,7 @@ const AddToy = () => {
                 <form onSubmit={HandleAddToy} className='space-y-5'>
                     <div className='flex gap-5'>
                         <input type="text" placeholder="Toy Name" name='toy' className="input input-bordered input-secondary block w-full  " required />
-                        <select className="select select-secondary w-full max-w-xs" name='category' required>
+                        <select className="select select-secondary w-full max-w-xs" name='category'>
                             <option disabled selected>Category</option>
                             <option>Teddy Bear</option>
                             <option>Horse</option>
@@ -56,8 +63,10 @@ const AddToy = () => {
                         <input type="number" placeholder="Quantity" name='quantity' className="input input-bordered input-secondary block w-full  " required />
                     </div>
                     <div className='flex gap-5'>
-                        <input type="text" placeholder="Seller Name" name='name' className="input input-bordered input-secondary block w-full  " required />
-                        <input type="email" placeholder="Seller Email" name='email' className="input input-bordered input-secondary block w-full  " required />
+                        <input type="text" placeholder="Seller Name" name='name'  className="input input-bordered input-secondary block w-full  " required />
+                        <select className="select select-secondary w-full max-w-xs" name='email' required>
+                            <option defaultValue={email}>{email}</option>
+                        </select>
                     </div>
                     <input type="url" placeholder="Photo Url" name='image' className="input input-bordered input-secondary block w-full  " required />
                     <textarea className="textarea textarea-secondary block w-full" placeholder="Write description" name='details' required ></textarea>

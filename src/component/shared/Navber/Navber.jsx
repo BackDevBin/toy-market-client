@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 import { useContext } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
+import webLogo from '../../../assets/logo.png'
 
 const Navber = () => {
 
@@ -14,7 +15,7 @@ const Navber = () => {
             .catch((error) => console.log(error))
     }
 
-    console.log(user)
+    
 
     return (
         <div className="navbar bg-base-200">
@@ -30,13 +31,18 @@ const Navber = () => {
                         <li><Link to="/blog"> Blogs</Link> </li>
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+                <Link to="/"><img className='w-24 md:mx-5' src={webLogo} alt="" /></Link>
+                
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
+                    <li><Link to="/">Home</Link> </li>
                     <li><Link to="/toys"> All Toys</Link> </li>
-                    <li><Link> My Toys</Link> </li>
-                    <li><Link to="/add"> Add A Toy</Link> </li>
+                    {
+                        user ? <><li><Link to="/mytoy"> My Toys</Link> </li>
+                        <li><Link to="/add"> Add A Toy</Link> </li>
+                        </> : <></>
+                    }
                     <li><Link to="/blog"> Blogs</Link> </li>
                 </ul>
             </div>
@@ -44,11 +50,11 @@ const Navber = () => {
                 {
                     user ? <>
                         <div className="tooltip tooltip-bottom tooltip-secondary" data-tip={user?.displayName}>
-                        <img className='rounded-full w-24' src={user?.photoURL} alt="" />
+                        <img className='rounded-full w-12 mx-2' src={user?.photoURL} alt="" />
                         </div>
-                        <button onClick={handleLogOut} className="btn btn-outline btn-secondary normal-case">Logout</button>
+                        <button onClick={handleLogOut} className="btn btn-outline btn-secondary normal-case md:me-5">Logout</button>
                         
-                    </> : <Link to="/login"><button className="btn btn-outline btn-secondary normal-case">Login</button></Link>
+                    </> : <Link to="/login"><button className="btn btn-outline btn-secondary normal-case md:me-5">Login</button></Link>
                 }
             </div>
         </div>
