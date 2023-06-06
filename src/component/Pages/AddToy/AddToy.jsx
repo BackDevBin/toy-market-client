@@ -2,6 +2,7 @@ import React from 'react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const AddToy = () => {
 
@@ -33,6 +34,16 @@ const AddToy = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+                if(data.insertedId){
+
+                    Swal.fire({
+                        title: 'Sucessful!',
+                        text: 'Do you want to continue',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                      })
+
+                }
 
             })
 
@@ -44,13 +55,12 @@ const AddToy = () => {
     return (
         <div className='w-full'>
 
-            <div className='mx-auto my-8 py-10 px-9 w-1/2 text-center space-y-5 border-2 rounded-md '>
-                <h3 className='text-xl'>Additional Information</h3>
+            <div className='mx-auto my-8 py-10 px-9 w-1/2 text-center border-2 rounded-md '>
+                <h3 className='text-xl mb-8'>Toy Information</h3>
                 <form onSubmit={HandleAddToy} className='space-y-5'>
                     <div className='flex gap-5'>
                         <input type="text" placeholder="Toy Name" name='toy' className="input input-bordered input-secondary block w-full  " required />
-                        <select className="select select-secondary w-full max-w-xs" name='category'>
-                            <option disabled selected>Category</option>
+                        <select className="select select-secondary w-full max-w-xs" name='category' >
                             <option>Teddy Bear</option>
                             <option>Horse</option>
                             <option>Dinosaur</option>

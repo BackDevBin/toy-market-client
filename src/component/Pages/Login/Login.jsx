@@ -56,7 +56,7 @@ const Login = () => {
     return (
         <div className='w-full'>
 
-            <div className='mx-auto my-8 py-10 px-9 w-80 text-center space-y-5 border-2 rounded-md '>
+            <div className='mx-auto my-8 py-10 px-9 w-80 text-center space-y-5 border-2 rounded-lg '>
                 <h3 className='text-xl'>Sign In</h3>
                 <form onSubmit={handleLogin} className='space-y-5'>
                     <input type="email" placeholder="Email" name='email' className="input input-bordered input-secondary block w-full max-w-xs " />

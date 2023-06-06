@@ -51,7 +51,7 @@ const Register = () => {
     return (
         <div className='w-full'>
 
-            <div className='mx-auto my-8 py-10 px-9 w-1/2 text-center space-y-5 border-2 rounded-md '>
+            <div className='mx-auto my-8 py-10 px-9 w-1/2 text-center space-y-5 border-2 rounded-lg '>
                 <h3 className='text-xl'>Create Account</h3>
                 <form onSubmit={handleSignUpForm} className='space-y-5'>
                     <input type="text" placeholder="Full Name" name='name' className="input input-bordered input-secondary block w-full  " />

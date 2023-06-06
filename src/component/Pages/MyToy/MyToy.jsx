@@ -1,19 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useContext } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
-import userlogo from '../../../assets/user.png'
+import { useEffect } from 'react';
 
 const MyToy = () => {
 
-
-
+    const [userOwnToys, setUserOwnToys] = useState([]);
     const toys = useLoaderData();
     const user = useContext(AuthContext);
     const email = user.user.email;
-    console.log(user)
 
-    const userOwnToys = toys.filter(toy => toy.seller_email === email);
+
+    useEffect(() => {
+       const userToys = toys.filter(toy => toy.seller_email === email);
+       setUserOwnToys(userToys);
+    }, [email])
+
+
+
+    const handleDeleteBtn = id => {
+
+        const proceed = confirm("Are you sure ?");
+
+        if (proceed) {
+
+            fetch(`http://localhost:5000/toys/${id}`, {
+                method: 'DELETE',
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.deletedCount > 0) {
+                        let remain = userOwnToys.filter(ownToy => ownToy._id !== id );
+                        setUserOwnToys(remain);
+                        console.log(remain);
+                    }
+
+                })
+
+        }
+
+    }
+
+
+   
+
+
 
     return (
         <div className='mx-14 my-10'>
@@ -54,10 +87,10 @@ const MyToy = () => {
                                 <td>{toy.category}</td>
                                 <td>USD {toy.price}</td>
                                 <th>
-                                    <Link to={`/details/${toy._id}`}><button className="btn btn-ghost btn-xs normal-case">Update</button></Link>
+                                 <Link to={`/update/${toy._id}`}><button className="btn btn-ghost btn-xs normal-case">Update</button></Link>   
                                 </th>
                                 <th>
-                                    <Link to={`/details/${toy._id}`}><button className="btn btn-ghost btn-xs normal-case">Delete</button></Link>
+                                    <button onClick={() => handleDeleteBtn(toy._id)} className="btn btn-ghost btn-xs normal-case">Delete</button>
                                 </th>
                             </tr>)
                         }
