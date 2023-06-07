@@ -36,10 +36,10 @@ const UpdateToy = () => {
                 if(data.modifiedCount > 0){
 
                     Swal.fire({
-                        title: 'Sucessful!',
+                        title: 'Toy Updated Successful!',
                         text: 'Do you want to continue',
                         icon: 'success',
-                        confirmButtonText: 'OK'
+                        confirmButtonText: 'Continue'
                       })
 
                 }
@@ -68,7 +68,7 @@ const UpdateToy = () => {
                     </div>
                     <div className='text-sm '>
                         <span>Check the my toy list? </span>
-                        <span className='text-green-600 underline'> <Link to='/'> Go</Link></span>
+                        <span className='text-green-600 underline'> <Link to='/mytoy'> Go</Link></span>
                     </div>
                 </form>
             </div>

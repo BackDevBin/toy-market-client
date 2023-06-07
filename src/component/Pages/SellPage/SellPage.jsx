@@ -4,7 +4,7 @@ import sale from '../../../assets/sale.png';
 
 const SellPage = () => {
     return (
-        <div className='bg-pink-300 text-center md:mx-14 my-10 md:p-16 p-8 rounded-lg space-y-5'>
+        <div className='bg-pink-300 text-center md:mx-14 my-10 md:p-16 p-8 mx-5 rounded-lg space-y-5'>
             <div className='text-start mb-8 space-y-2'>
                 <h3 className='md:text-3xl font-bold'>Sell With Us</h3>
                 <p className='text-base max-w-2xl'>We offer two convenient ways to consign your used toys and baby gear-curbside pickup in select metro areas, plus clean-out boxes nationwide.</p>

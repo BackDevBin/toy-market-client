@@ -20,7 +20,7 @@ const Gallery = () => {
                 <p className='text-base text-slate-400 max-w-xl mx-auto'>Having and being with every family and friends. Happiness is about being nice and spreading love all around the world.</p>
             </div>
              
-            <div className='grid grid-cols-4 rounded-lg md:gap-1 bg-slate-600'>
+            <div className='grid grid-cols-4 rounded-lg md:gap-1 '>
                 {
                     images.map(image => <img key={image._id} className='w-full h-full rounded-lg transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-150' src={image.url} alt="" />)
                 }

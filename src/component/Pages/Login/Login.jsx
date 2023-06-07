@@ -4,10 +4,11 @@ import { FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import useTitle from '../../../CustomHooks/useTitle';
+import Swal from 'sweetalert2';
 
 const Login = () => {
     const [show, setShow] = useState(false);
-    const [error , setError] = useState('');
+    
 
     const {GoogleLogin,createLogin} = useContext(AuthContext);
 
@@ -34,10 +35,21 @@ const Login = () => {
             const logUser = result.user;
             form.reset();
             navigate(from);
+
+            Swal.fire({
+                title: 'Login successful !!!',
+                text: 'Do you want to continue',
+                icon: 'success',
+                confirmButtonText: 'Continue'
+              })
         })
         .catch(error =>{
-            console.log(error);
-            setError(error.message);
+            Swal.fire({
+                title: 'Opps !!! Login Unsuccessful',
+                text: `${error.message}`,
+                icon: 'error',
+                confirmButtonText: 'Continue'
+              })
         })
         
     }
@@ -48,9 +60,22 @@ const Login = () => {
         .then(result =>{
             const logUser = result.user;
             navigate(from);
+
+            Swal.fire({
+                title: 'Login successful !!!',
+                text: 'Do you want to continue',
+                icon: 'success',
+                confirmButtonText: 'Continue'
+              })
         })
         .catch(error =>{
-            //console.log("error",error);
+            
+            Swal.fire({
+                title: 'Opps !!! Login Unsuccessful',
+                text: `${error.message}`,
+                icon: 'error',
+                confirmButtonText: 'Continue'
+              })
             
         })
     }

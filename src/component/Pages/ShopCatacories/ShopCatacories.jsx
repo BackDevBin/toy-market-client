@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { FaStar } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const ShopCatacories = () => {
 
     const [toggle, setToggle] = useState("All Toys");
     const [toys, setToys] = useState([]);
     let [cat, setCat] = useState([]);
+
+    const user = useContext(AuthContext);
 
     useEffect(() => {
         fetch('https://toy-market-server-eight.vercel.app/toys')
@@ -29,6 +34,19 @@ const ShopCatacories = () => {
         } else {
             const catToy = toys.filter(toy => toy.category === index);
             setCat(catToy);
+        }
+    }
+
+    const HandleDetails = () => {
+        if(user){
+
+            Swal.fire({
+                title: 'You Must Login !!!',
+                text: 'Do you want to continue',
+                icon: 'warning',
+                confirmButtonText: 'Continue'
+              })
+
         }
     }
 
@@ -65,7 +83,7 @@ const ShopCatacories = () => {
                             <FaStar className=' text-base mt-1'></FaStar>
                             <p className='mx-2'>{cate.rating}</p>
                         </div>
-                        <Link to={`/details/${cate._id}`}><button className="btn btn-outline btn-secondary normal-case mt-2">Details</button></Link>
+                        <Link to={`/details/${cate._id}`}><button onClick={HandleDetails} className="btn btn-outline btn-secondary normal-case mt-2">Details</button></Link>
                     </div>)
                 }
 

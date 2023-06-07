@@ -4,12 +4,10 @@ import { FaGoogle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import useTitle from '../../../CustomHooks/useTitle';
+import Swal from 'sweetalert2';
 
 const Register = () => {
     const [show, setShow] = useState(false);
-    const [error , setError] = useState('');
-    const [success , setSuccess] = useState('');
-
 
     const {createUser , logOut} = useContext(AuthContext);
 
@@ -25,24 +23,29 @@ const Register = () => {
         const pass = form.password.value;
         const name = form.name.value;
         const photo = form.image.value;
+
        
-        console.log(email,pass,name,photo);
-
-        setError('');
-        setSuccess('');
-
-
         createUser(email,pass)
         .then(result =>{
             const logUser = result.user;
-            setSuccess('Registration Successful !!!');
             form.reset();
             logOut();
-            // console.log(logUser);
+            
+            Swal.fire({
+                title: 'Congratulations!!! Your account has been successfully created',
+                text: 'Do you want to continue',
+                icon: 'success',
+                confirmButtonText: 'Continue'
+              })
         })
         .catch(error =>{
-            // console.log(error.message);
-            setError(error.message);
+           
+            Swal.fire({
+                title: 'Opps !!! Registration Unsuccessful',
+                text: `${error.message}`,
+                icon: 'error',
+                confirmButtonText: 'Continue'
+              })
         })
 
     }
@@ -58,10 +61,10 @@ const Register = () => {
                 <h3 className='text-xl'>Create Account</h3>
                 <form onSubmit={handleSignUpForm} className='space-y-5'>
                     <input type="text" placeholder="Full Name" name='name' className="input input-bordered input-secondary block w-full  " />
-                    <input type="email" placeholder="Your Email" name='email' className="input input-bordered input-secondary block w-full  " />
-                    <input type="text" placeholder="Photo Url" name='image' className="input input-bordered input-secondary block w-full  " />
+                    <input type="email" placeholder="Your Email" name='email' className="input input-bordered input-secondary block w-full  " required />
+                    <input type="text" placeholder="Photo Url" name='image' className="input input-bordered input-secondary block w-full  " required/>
                     <div>
-                        <input type={show ? "text" : "password"} placeholder="Password" name='password' className="input input-bordered input-secondary block w-full " />
+                        <input type={show ? "text" : "password"} placeholder="Password" name='password' className="input input-bordered input-secondary block w-full " required />
                         <p onClick={() => setShow(!show)} className='text-start text-sm text-stone-500'><small>
                             {
                                 show ? <span className="link link-hover">Hide Password</span> : <span className="link link-hover">Show Password</span>

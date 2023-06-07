@@ -4,6 +4,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { useEffect } from 'react';
 import useTitle from '../../../CustomHooks/useTitle';
+import Swal from 'sweetalert2';
 
 const MyToy = () => {
 
@@ -14,8 +15,8 @@ const MyToy = () => {
 
 
     useEffect(() => {
-       const userToys = toys.filter(toy => toy.seller_email === email);
-       setUserOwnToys(userToys);
+        const userToys = toys.filter(toy => toy.seller_email === email);
+        setUserOwnToys(userToys);
     }, [email])
 
 
@@ -23,30 +24,48 @@ const MyToy = () => {
 
     const handleDeleteBtn = id => {
 
-        const proceed = confirm("Are you sure ?");
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this Toy!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
 
-        if (proceed) {
 
-            fetch(`https://toy-market-server-eight.vercel.app/toys/${id}`, {
-                method: 'DELETE',
-            })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                    if (data.deletedCount > 0) {
-                        let remain = userOwnToys.filter(ownToy => ownToy._id !== id );
-                        setUserOwnToys(remain);
-                        // console.log(remain);
-                    }
-
+                fetch(`https://toy-market-server-eight.vercel.app/toys/${id}`, {
+                    method: 'DELETE',
                 })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.deletedCount > 0) {
+                            let remain = userOwnToys.filter(ownToy => ownToy._id !== id);
+                            setUserOwnToys(remain);
 
-        }
+                        }
+
+                    })
+
+
+                Swal.fire(
+                    'Deleted!',
+                    'Your Toy has been deleted.',
+                    'success'
+                )
+            }
+        })
+
+
+       
 
     }
 
 
-   
+
 
 
 
@@ -89,7 +108,7 @@ const MyToy = () => {
                                 <td>{toy.category}</td>
                                 <td>USD {toy.price}</td>
                                 <th>
-                                 <Link to={`/update/${toy._id}`}><button className="btn btn-ghost btn-xs normal-case">Update</button></Link>   
+                                    <Link to={`/update/${toy._id}`}><button className="btn btn-ghost btn-xs normal-case">Update</button></Link>
                                 </th>
                                 <th>
                                     <button onClick={() => handleDeleteBtn(toy._id)} className="btn btn-ghost btn-xs normal-case">Delete</button>

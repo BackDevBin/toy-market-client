@@ -40,10 +40,10 @@ const AddToy = () => {
                 if(data.insertedId){
 
                     Swal.fire({
-                        title: 'Sucessful!',
+                        title: 'Toy Added Successfully !!!',
                         text: 'Do you want to continue',
                         icon: 'success',
-                        confirmButtonText: 'Cool'
+                        confirmButtonText: 'Continue'
                       })
 
                 }
@@ -88,8 +88,8 @@ const AddToy = () => {
                         <input className="btn btn-outline btn-secondary w-full normal-case" type="submit" value="Add Toy" />
                     </div>
                     <div className='text-sm '>
-                        <span>Check the toy list? </span>
-                        <span className='text-green-600 underline'> <Link to='/'> Go</Link></span>
+                        <span>Check the my toy list? </span>
+                        <span className='text-green-600 underline'> <Link to='/mytoy'> Go</Link></span>
                     </div>
                 </form>
             </div>
