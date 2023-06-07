@@ -12,7 +12,7 @@ const ErrorPage = () => {
                <img className='w-40 mx-auto' src={sad} alt="" />
                <h1 className='text-8xl font-bold'>404</h1>
                <h3 className='text-4xl'>Page not found</h3>
-               <p className='text-gray-500'>The Page you are looking for doesn't exist or an error occurred. Please <Link to='/'><span className='text-green-600 font-semibold'>Go Back</span></Link>  </p>
+               <p className='text-gray-500'>The Page you are looking for doesn't exist or an error occurred. Please <Link to='/'><span className='text-xl text-green-600 font-semibold'>Go Back</span></Link>  </p>
             </div>
         </div>
     );

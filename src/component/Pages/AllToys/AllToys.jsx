@@ -75,8 +75,8 @@ const AllToys = () => {
                                             </div>
                                         </div>
                                         <div>
-                                            <div className="font-semibold">{toy.seller_name}</div>
-                                            <div className="text-sm opacity-50">{toy.seller_email}</div>
+                                            <div className="font-semibold">{toy?.seller_name}</div>
+                                            <div className="text-sm opacity-50">{toy?.seller_email}</div>
                                         </div>
                                     </div>
                                 </td>

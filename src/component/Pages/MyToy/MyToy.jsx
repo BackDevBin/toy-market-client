@@ -67,7 +67,7 @@ const MyToy = () => {
             .then(res => res.json())
             .then(data => {
                 const newToy = data.filter(toy => toy.seller_email === email);
-                console.log(newToy) 
+                 
                 setUserOwnToys(newToy);   
             })
 
@@ -124,7 +124,7 @@ const MyToy = () => {
                                     <div className="flex items-center space-x-3">
                                         <div className="avatar">
                                             <div className="mask  w-20 h-20">
-                                                <img src={toy.picture} alt="Avatar" />
+                                                <img className='transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-150' src={toy.picture} alt="Avatar" />
                                             </div>
                                         </div>
                                         <div>

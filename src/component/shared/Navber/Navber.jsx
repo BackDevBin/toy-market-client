@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaUserCircle } from 'react-icons/fa';
 import { useContext } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import webLogo from '../../../assets/logo.png'
@@ -36,14 +35,14 @@ const Navber = () => {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1 font-semibold">
-                    <li><Link to="/">Home</Link> </li>
-                    <li><Link to="/toys"> All Toys</Link> </li>
+                    <li className='hover:bg-pink-500 rounded-md hover:text-slate-100'><Link to="/">Home</Link> </li>
+                    <li className='hover:bg-pink-500 rounded-md hover:text-slate-100'><Link to="/toys"> All Toys</Link> </li>
                     {
-                        user ? <><li><Link to="/mytoy"> My Toys</Link> </li>
-                        <li><Link to="/add"> Add A Toy</Link> </li>
+                        user ? <><li className='hover:bg-pink-500 rounded-md hover:text-slate-100'><Link to="/mytoy"> My Toys</Link> </li>
+                        <li className='hover:bg-pink-500 rounded-md hover:text-slate-100'><Link to="/add"> Add A Toy</Link> </li>
                         </> : <></>
                     }
-                    <li><Link to="/blog"> Blogs</Link> </li>
+                    <li className='hover:bg-pink-500 rounded-md hover:text-slate-100'><Link to="/blog"> Blogs</Link> </li>
                 </ul>
             </div>
             <div className="navbar-end">

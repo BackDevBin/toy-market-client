@@ -28,7 +28,7 @@ const Login = () => {
         const email = form.email.value;
         const pass = form.password.value;
 
-        console.log(email,pass);
+        
 
         createLogin(email, pass)
         .then(result =>{
@@ -87,9 +87,9 @@ const Login = () => {
             <div className='mx-auto my-8 py-10 px-9 w-80 text-center space-y-5 border-2 rounded-lg '>
                 <h3 className='text-xl'>Sign In</h3>
                 <form onSubmit={handleLogin} className='space-y-5'>
-                    <input type="email" placeholder="Email" name='email' className="input input-bordered input-secondary block w-full max-w-xs " />
+                    <input type="email" placeholder="Email" name='email' className="input input-bordered input-secondary block w-full max-w-xs " required />
                     <div>
-                        <input type={show ? "text" : "password"} placeholder="Password" name='password' className="input input-bordered input-secondary block w-full max-w-xs" />
+                        <input type={show ? "text" : "password"} placeholder="Password" name='password' className="input input-bordered input-secondary block w-full max-w-xs" required />
                         <p onClick={() => setShow(!show)} className='text-start text-sm text-stone-500'><small>
                             {
                                 show ? <span className="link link-hover">Hide Password</span> : <span className="link link-hover">Show Password</span>

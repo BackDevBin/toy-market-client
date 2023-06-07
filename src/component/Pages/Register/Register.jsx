@@ -9,11 +9,11 @@ import Swal from 'sweetalert2';
 const Register = () => {
     const [show, setShow] = useState(false);
 
-    const {createUser , logOut} = useContext(AuthContext);
+    const { createUser, logOut, userUpdateData } = useContext(AuthContext);
 
     useTitle("Register");
 
-   
+
     const handleSignUpForm = (event) => {
 
         event.preventDefault();
@@ -24,29 +24,38 @@ const Register = () => {
         const name = form.name.value;
         const photo = form.image.value;
 
-       
-        createUser(email,pass)
-        .then(result =>{
-            const logUser = result.user;
-            form.reset();
-            logOut();
-            
-            Swal.fire({
-                title: 'Congratulations!!! Your account has been successfully created',
-                text: 'Do you want to continue',
-                icon: 'success',
-                confirmButtonText: 'Continue'
-              })
-        })
-        .catch(error =>{
-           
-            Swal.fire({
-                title: 'Opps !!! Registration Unsuccessful',
-                text: `${error.message}`,
-                icon: 'error',
-                confirmButtonText: 'Continue'
-              })
-        })
+
+        createUser(email, pass)
+            .then(result => {
+                const logUser = result.user;
+                form.reset();
+
+
+                userUpdateData(logUser, name, photo)
+                    .then(() => {
+
+                    }).catch((error) => {
+                        console.log(error);
+                    });
+
+                logOut();
+
+                Swal.fire({
+                    title: 'Congratulations!!! Your account has been successfully created',
+                    text: 'Do you want to continue',
+                    icon: 'success',
+                    confirmButtonText: 'Continue'
+                })
+            })
+            .catch(error => {
+
+                Swal.fire({
+                    title: 'Opps !!! Registration Unsuccessful',
+                    text: `${error.message}`,
+                    icon: 'error',
+                    confirmButtonText: 'Continue'
+                })
+            })
 
     }
 
@@ -62,7 +71,7 @@ const Register = () => {
                 <form onSubmit={handleSignUpForm} className='space-y-5'>
                     <input type="text" placeholder="Full Name" name='name' className="input input-bordered input-secondary block w-full  " />
                     <input type="email" placeholder="Your Email" name='email' className="input input-bordered input-secondary block w-full  " required />
-                    <input type="text" placeholder="Photo Url" name='image' className="input input-bordered input-secondary block w-full  " required/>
+                    <input type="text" placeholder="Photo Url" name='image' className="input input-bordered input-secondary block w-full  " required />
                     <div>
                         <input type={show ? "text" : "password"} placeholder="Password" name='password' className="input input-bordered input-secondary block w-full " required />
                         <p onClick={() => setShow(!show)} className='text-start text-sm text-stone-500'><small>

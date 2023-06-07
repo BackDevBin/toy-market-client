@@ -4,6 +4,7 @@ import twitter from '../../../assets/tw.png'
 import instagram from '../../../assets/insta.png'
 import pin from '../../../assets/pinta.png'
 import { Link } from 'react-router-dom';
+import webLogo from '../../../assets/footer.png'
 
 
 const Footer = () => {
@@ -11,12 +12,12 @@ const Footer = () => {
         <div>
             <footer className="footer p-10 bg-base-200 text-base-content">
                 <div>
-                    
-                    <p>ACME Industries Ltd.<br />Providing reliable tech since 1992</p>
+                    <img src={webLogo} className='w-36' alt="" />
+                    <p>The Jungle Toy Ltd.<br />410 Terry Ave St, Yerevan, Armenia</p>
                 </div>
                 <div>
                     <span className="footer-title">Services</span>
-                    <a className="link link-hover">Branding</a>
+                    <a className="link link-hover">Sell with us</a>
                     <a className="link link-hover">Design</a>
                     <a className="link link-hover">Marketing</a>
                     <a className="link link-hover">Advertisement</a>
@@ -25,8 +26,8 @@ const Footer = () => {
                     <span className="footer-title">Company</span>
                     <a className="link link-hover">About us</a>
                     <a className="link link-hover">Contact</a>
-                    <a className="link link-hover">Jobs</a>
-                    <a className="link link-hover">Press kit</a>
+                    <Link className="link link-hover">Toys</Link>
+                    <a className="link link-hover">Gallery</a>
                 </div>
                 <div>
                     <span className="footer-title">Legal</span>
