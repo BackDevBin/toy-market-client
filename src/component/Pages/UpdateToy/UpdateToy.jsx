@@ -21,7 +21,7 @@ const UpdateToy = () => {
         const detail_description = form.details.value;
         const toyDetails = {  price, available_quantity, detail_description };
 
-        console.log(toyDetails);
+        
 
         fetch(`https://toy-market-server-eight.vercel.app/toys/${toy._id}`, {
             method: 'PUT',

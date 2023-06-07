@@ -50,7 +50,6 @@ const MyToy = () => {
 
                     })
 
-
                 Swal.fire(
                     'Deleted!',
                     'Your Toy has been deleted.',
@@ -59,12 +58,34 @@ const MyToy = () => {
             }
         })
 
-
-       
-
     }
 
 
+    const highBtn = () => {
+
+        fetch('https://toy-market-server-eight.vercel.app/descending')
+            .then(res => res.json())
+            .then(data => {
+                const newToy = data.filter(toy => toy.seller_email === email);
+                console.log(newToy) 
+                setUserOwnToys(newToy);   
+            })
+
+           
+
+    }
+
+    const lowBtn = () => {
+
+        fetch('https://toy-market-server-eight.vercel.app/ascending')
+            .then(res => res.json())
+            .then(data => {
+                const newToy = data.filter(toy => toy.seller_email === email);
+                console.log(newToy) 
+                setUserOwnToys(newToy);   
+            })
+
+    }
 
 
 
@@ -75,6 +96,13 @@ const MyToy = () => {
                 <div className='w-50 text-center'>
                     <h3 className='text-xl font-semibold'>User : {user.user.displayName}</h3>
                     <p className='text-base font-semibold'>Total Toys: {userOwnToys.length}</p>
+                </div>
+            </div>
+            <div className='w-full flex justify-end items-center space-x-2'>
+                <p className='text-sm font-semibold text-gray-500'>Sort by Price</p>
+                <div>
+                    <button onClick={highBtn} className="btn btn-sm normal-case rounded-none">High</button>
+                    <button onClick={lowBtn} className="btn btn-sm normal-case rounded-none">Low</button>
                 </div>
             </div>
             <div className="overflow-x-auto">

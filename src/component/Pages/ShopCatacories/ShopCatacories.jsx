@@ -13,6 +13,7 @@ const ShopCatacories = () => {
 
     const user = useContext(AuthContext);
 
+
     useEffect(() => {
         fetch('https://toy-market-server-eight.vercel.app/toys')
             .then(res => res.json())
@@ -38,10 +39,10 @@ const ShopCatacories = () => {
     }
 
     const HandleDetails = () => {
-        if(user){
+        if(user.user == null){
 
             Swal.fire({
-                title: 'You Must Login !!!',
+                title: 'You must be login first !!!',
                 text: 'Do you want to continue',
                 icon: 'warning',
                 confirmButtonText: 'Continue'
