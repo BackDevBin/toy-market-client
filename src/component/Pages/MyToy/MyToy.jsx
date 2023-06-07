@@ -25,7 +25,7 @@ const MyToy = () => {
 
         if (proceed) {
 
-            fetch(`http://localhost:5000/toys/${id}`, {
+            fetch(`https://toy-market-server-eight.vercel.app/toys/${id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())
@@ -34,7 +34,7 @@ const MyToy = () => {
                     if (data.deletedCount > 0) {
                         let remain = userOwnToys.filter(ownToy => ownToy._id !== id );
                         setUserOwnToys(remain);
-                        console.log(remain);
+                        // console.log(remain);
                     }
 
                 })

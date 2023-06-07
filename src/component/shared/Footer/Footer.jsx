@@ -3,6 +3,7 @@ import fb from '../../../assets/fb.png'
 import twitter from '../../../assets/tw.png'
 import instagram from '../../../assets/insta.png'
 import pin from '../../../assets/pinta.png'
+import { Link } from 'react-router-dom';
 
 
 const Footer = () => {
@@ -40,10 +41,10 @@ const Footer = () => {
                 <div>
                     <span className="footer-title">Connect with us</span>
                     <div className='flex py-5 space-x-5'>
-                        <img src={twitter} alt="" />
-                        <img src={fb} alt="" />
-                        <img src={pin} alt="" />
-                        <img src={instagram} alt="" />
+                        <Link to="https://twitter.com/"><img src={twitter} alt="" /></Link>
+                        <Link to="https://www.facebook.com/"><img src={fb} alt="" /></Link>
+                        <Link to="https://www.pinterest.com/"><img src={pin} alt="" /></Link>
+                        <Link to="https://www.instagram.com/"><img src={instagram} alt="" /></Link>
                     </div>
                 </div>
 
