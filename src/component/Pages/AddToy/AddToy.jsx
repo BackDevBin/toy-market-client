@@ -3,11 +3,14 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
+import useTitle from '../../../CustomHooks/useTitle';
 
 const AddToy = () => {
 
     const user = useContext(AuthContext);
     const email = user.user.email;
+
+    useTitle("Add A Toy");
 
     const HandleAddToy = event => {
         event.preventDefault();

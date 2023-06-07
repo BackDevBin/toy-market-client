@@ -6,12 +6,15 @@ import CustomerReview from '../CustomerReview/CustomerReview';
 import ShopCatacories from '../ShopCatacories/ShopCatacories';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
+import useTitle from '../../../CustomHooks/useTitle';
 
 const Home = () => {
 
     useEffect(()=>{
         Aos.init({duration: 2000});
     },[])
+
+    useTitle("Home");
 
 
     return (

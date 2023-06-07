@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
+import useTitle from '../../../CustomHooks/useTitle';
 
 const Login = () => {
     const [show, setShow] = useState(false);
@@ -16,6 +17,8 @@ const Login = () => {
     let location = useLocation();
 
     const from = location.state?.from?.pathname || '/';
+
+    useTitle("Login");
 
     const handleLogin =(event) =>{
         event.preventDefault();

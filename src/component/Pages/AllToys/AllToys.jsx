@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import userlogo from '../../../assets/user.png'
 import { Link } from 'react-router-dom';
+import useTitle from '../../../CustomHooks/useTitle';
 
 const AllToys = () => {
 
@@ -14,7 +15,9 @@ const AllToys = () => {
             .then(data => setToys(data))
     }, [])
 
+    useTitle("All Toys");
 
+        
 
     return (
         <div className='mx-14 my-10'>

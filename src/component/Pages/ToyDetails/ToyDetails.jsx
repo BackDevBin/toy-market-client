@@ -1,12 +1,14 @@
 import React from 'react';
 import { FaStar } from 'react-icons/fa';
 import { useLoaderData } from 'react-router-dom';
+import useTitle from '../../../CustomHooks/useTitle';
 
 const ToyDetails = () => {
     const toy = useLoaderData();
     const { seller_name, seller_email, toy_name, category, price, available_quantity, picture, detail_description, rating } = toy;
 
-    console.log(toy);
+    useTitle("Toy Details");
+    // console.log(toy);
 
     return (
         <div className='md:mx-14 my-20'>

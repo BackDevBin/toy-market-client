@@ -1,10 +1,14 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useTitle from '../../../CustomHooks/useTitle';
 
 const UpdateToy = () => {
 
     const toy = useLoaderData();
+
+
+    useTitle("Update Toy");
 
 
     const handleUpdateBtn = event => {

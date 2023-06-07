@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { useEffect } from 'react';
+import useTitle from '../../../CustomHooks/useTitle';
 
 const MyToy = () => {
 
@@ -18,6 +19,7 @@ const MyToy = () => {
     }, [email])
 
 
+    useTitle("My Toys");
 
     const handleDeleteBtn = id => {
 

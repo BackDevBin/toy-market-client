@@ -1,8 +1,11 @@
 import React from 'react';
 import sad from '../../../assets/sad.png'
 import { Link } from 'react-router-dom';
+import useTitle from '../../../CustomHooks/useTitle';
 
 const ErrorPage = () => {
+
+    useTitle("404 Error");
     return (
         <div className='h-screen w-full border-4 border-black relative'>
             <div className='text-center space-y-5 absolute bottom-28 left-20 right-20'>

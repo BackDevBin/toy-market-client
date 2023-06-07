@@ -1,6 +1,10 @@
 import React from 'react';
+import useTitle from '../../../CustomHooks/useTitle';
 
 const Blog = () => {
+
+    useTitle("Blogs");
+
     return (
         <div className='mx-14'>
             <div className='w-full h-32 flex justify-center'>

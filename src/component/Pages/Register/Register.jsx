@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
+import useTitle from '../../../CustomHooks/useTitle';
 
 const Register = () => {
     const [show, setShow] = useState(false);
@@ -11,6 +12,8 @@ const Register = () => {
 
 
     const {createUser , logOut} = useContext(AuthContext);
+
+    useTitle("Register");
 
    
     const handleSignUpForm = (event) => {
